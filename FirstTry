@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+bool gameOver;
+char canvas[25][80];
+char in;
+int asteroidPx, asteroidPy, shooterP, shotPx, shotPy;
+
+void initializeCanvas(char c[25][80]){
+    gameOver = true;
+    for (int i=0; i<25; i++){
+        for (int j=0; j<80; j++){
+            canvas[i][j] = ' ';
+            c[i][j] = canvas[i][j];
+        }
+    }
+    canvas[24][0] = 'X';
+    c[24][0] = canvas[24][0];
+}
+
+
+int createAsteroid(char c[25][80]){
+    int n = rand() % 80;
+    canvas[0][n] = 'o';
+    c[0][n] = canvas[0][n];
+    return n;
+}
+
+bool moveAsteroid(char c[25][80], int pos){
+    int asteroidPx = createAsteroid(canvas);
+    canvas[pos][asteroidPx] = ' ';
+    canvas[pos][asteroidPx] = 'o';
+    c[pos][asteroidPx] = canvas[i-1][asteroidPx];
+    c[i][asteroidPx] = canvas[i][asteroidPx];
+    pos++;
+    return pos;
+}
+
+int moveLeft(int pos, char c[24][80]){
+    if (pos != 0){
+        pos++;
+        canvas[24][pos] = canvas[24][pos-1];
+        canvas[24][pos-1] = ' ';
+        c[24][pos] = canvas[24][pos];
+        c[24][pos-1] = canvas[24][pos];
+    }
+    return pos;
+}
+
+int moveRight(int pos, char c[24][80]){
+    if (pos != 0){
+        pos--;
+        canvas[24][pos] = canvas[24][pos-1];
+        canvas[24][pos+1] = ' ';
+        c[24][pos] = canvas[24][pos];
+        c[24][pos+1] = canvas[24][pos];
+    }
+    return pos;
+}
+
+void movePos(){
+    switch (in){
+        case 'd':
+            moveRight(shooterP,canvas);
+            break;
+        case 'a':
+            moveLeft(shooterP,canvas);
+            break;
+        case ' ':
+            shoot(canvas, shooterP);
+    }
+}
+
+int shoot(char c[24][80], pos){
+    
+    for (int i=23; i>0; i--){
+        canvas[i] = ' ';
+        canvas[i+1] = '*'
+}
+
+int main()
+{
+    
+    return 0;
+}
